@@ -8,6 +8,7 @@ import { getBaskeTotal } from "./reducer";
 import CurrencyFormat from "react-currency-format";
 import Axios from "./axios";
 import { db } from "./firebase";
+import Address from "./Address";
 
 function Payment() {
   const [state, dispatch] = useStateValue();
@@ -100,7 +101,7 @@ function Payment() {
     />
   ));
 
-  let filteredProducts; 
+  let filteredProducts;
   if (state.search?.length >= 3) {
     filteredProducts = state.basket
       .filter((prod) => prod.title.toLowerCase().includes(state.search))
@@ -131,8 +132,7 @@ function Payment() {
           </div>
           <div className="payment__address">
             <p>{state.user?.email}</p>
-            <p>100 Scotia Street</p>
-            <p>Melbourne, Australia</p>
+            <Address />
           </div>
         </div>
 

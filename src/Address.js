@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import usePlacesAutocomplete, {
   getGeocode,
+  getZipCode,
   getLatLng,
 } from "use-places-autocomplete";
 
 import useOnclickOutside from "react-cool-onclickoutside";
 
 function PlacesAutocomplete() {
+  const [zipcode, setzipCode] = useState(null);
+
   const {
-    ready,
-    value,
     suggestions: { status, data },
+    value,
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
@@ -28,6 +30,13 @@ function PlacesAutocomplete() {
   const handleInput = (e) => {
     // Update the keyword of the input element
     setValue(e.target.value);
+    getGeocode(params)
+      .then((response) => getZipCode(response[0], false)) // set to true for short_name
+      .then((zipCode) => {
+        setzipCode(zipCode);
+        //console.log("Zip Code", zipCode);
+      })
+      .catch((error) => console.log(error.message));
   };
 
   const handleSelect = ({ description }) => () => {
@@ -50,27 +59,37 @@ function PlacesAutocomplete() {
   const renderSuggestions = () => {
     return data.map((suggestion) => {
       //console.log("sugg", suggestion);
-      const {
-        id,
-        structured_formatting: { main_text, secondary_text },
-      } = suggestion;
-
       return (
-        <li key={id + suggestion.place_id} onClick={handleSelect(suggestion)}>
-          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        <li key={suggestion.place_id} onClick={handleSelect(suggestion)}>
+          <strong>{suggestion.structured_formatting.main_text}</strong>{" "}
+          <small>{suggestion.structured_formatting.secondary_text}</small>
         </li>
       );
     });
   };
 
+  const params = {
+    address: value,
+  };
+
+  useEffect(() => {
+    getGeocode(params)
+      .then((response) => getZipCode(response[0], false)) // set to true for short_name
+      .then((zipCode) => {
+        setzipCode(zipCode);
+        //console.log("Zip Code", zipCode);
+      })
+      .catch((error) => console.log(error.message));
+  }, [params, value]);
+
   return (
     <div ref={ref}>
       <input
-        value={value}
         onChange={handleInput}
-        disabled={!ready}
         placeholder="Where are you going?"
+        value={value}
       />
+      <div>{"The postcode is: " + zipcode}</div>
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
     </div>

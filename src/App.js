@@ -12,7 +12,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Orders";
 
-import Address from "./Address";
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 function App() {
@@ -42,12 +41,11 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Address />
         <Switch>
           <Route path="/orders">
             <Header />
             <Orders />
-          </Route> 
+          </Route>
 
           <Route path="/checkout">
             <Header />
