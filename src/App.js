@@ -11,6 +11,7 @@ import Payment from "./Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Orders from "./Orders";
+import Register from "./Register";
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
@@ -54,6 +55,10 @@ function App() {
 
           <Route path="/login">
             <Login />
+          </Route>
+
+          <Route path="/register">
+            <Register />
           </Route>
 
           <Route path="/payment">

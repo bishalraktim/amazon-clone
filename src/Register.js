@@ -3,35 +3,23 @@ import "./Login.css";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebase";
 
-function Login() {
+function Register() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signIn = (e) => {
+  const register = (e) => {
     e.preventDefault();
     auth
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
-        history.push("/");
+        // it successfully created a new user with email and password!
+        if (auth) {
+          history.push("/");
+        }
       })
-      .catch((error) => alert(error.message));
+      .catch((error) => alert(error.message)); 
   };
-
-  // const register = (e) => {
-  //   e.preventDefault();
-  //   auth
-  //     .createUserWithEmailAndPassword(email, password)
-  //     .then((auth) => {
-  //       // it successfully created a new user with email and password!
-  //       if (auth) {
-  //         history.push("/");
-  //       }
-  //     })
-  //     .catch((error) => alert(error.message));
-
-  //   // do some fancy firebase register shittt.....
-  // };
 
   return (
     <div className="login">
@@ -44,13 +32,14 @@ function Login() {
       </Link>
 
       <div className="login__container">
-        <h1>Sign-In</h1>
+        <h1>Create account</h1>
         <form>
           <h5>Email</h5>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            style={{ fontWeight: "bolder" }}
           />
 
           <h5>Password</h5>
@@ -58,27 +47,32 @@ function Login() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="At least 6 characters"
+            style={{ fontWeight: "bolder" }}
           />
-
-          <button className="login__signInButton" onClick={signIn}>
-            Continue
-          </button>
         </form>
         <p>
-          By continuing, you agree to Amazon's fake clone Conditions of Use and
-          Privacy Notice.
+          By creating Amazon fake clone account, you agree that you have read
+          and accepted our Conditions of Use and Privacy Notice.
         </p>
         <Link to="/register">
           <button
             className="login__registerButton"
-            style={{ cursor: "pointer" }}
+            onClick={register}
+            style={{ backgroundColor: "#f0c14b", cursor: "pointer" }}
           >
             Create your Amazon account
           </button>
         </Link>
+        <p style={{ fontSize: "14px" }}>
+          Already have an account?{" "}
+          <Link style={{ textDecoration: "none", color: "blue" }} to="/login">
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;

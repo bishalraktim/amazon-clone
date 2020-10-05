@@ -131,7 +131,7 @@ function Payment() {
             <h3>Delivery Address</h3>
           </div>
           <div className="payment__address">
-            <p>{state.user?.email}</p>
+            {/*<p>{state.user?.email}</p>*/}
             <Address />
           </div>
         </div>

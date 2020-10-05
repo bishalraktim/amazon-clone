@@ -6,6 +6,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 
 import useOnclickOutside from "react-cool-onclickoutside";
+import "./Address.css";
 
 function PlacesAutocomplete() {
   const [zipcode, setzipCode] = useState(null);
@@ -83,15 +84,21 @@ function PlacesAutocomplete() {
   }, [params, value]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="address">
       <input
         onChange={handleInput}
-        placeholder="Where are you going?"
+        placeholder="Please Enter Your Address"
         value={value}
+        className="address__input"
       />
-      <div>{"The postcode is: " + zipcode}</div>
+
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+      {status === "OK" && (
+        <ul className="address__ul">{renderSuggestions()}</ul>
+      )}
+      <div className="address__withZipCode">
+        {zipcode && value ? value + " " + zipcode : value}
+      </div>
     </div>
   );
 }
