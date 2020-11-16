@@ -4,13 +4,17 @@
   background-color: white;
   z-index: 1;
   align-items: center;
-  /* justify-content: flex-end; */
   margin: 10px;
   padding: 20px;
   max-height: 400px;
   background-color: white;
   z-index: 1;
   width: 100%;
+  cursor: pointer;
+}
+
+.product > img:hover {
+  transform: scale(1.05);
 }
 
 .product > img {
@@ -18,6 +22,7 @@
   width: 100%;
   object-fit: contain;
   margin-bottom: 15px;
+  transition: all 0.5s;
 }
 
 .product > button {
@@ -27,6 +32,7 @@
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
   outline: none;
+  cursor: pointer;
 }
 
 .product__info {
@@ -42,3 +48,4 @@
 .product__rating {
   display: flex;
 }
+ 

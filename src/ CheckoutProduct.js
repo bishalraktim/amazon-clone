@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import "./CheckoutProduct.css";
 import { useStateValue } from "./StateProvider";
 
-function CheckoutProduct(props) {
+const CheckoutProduct = forwardRef((props, ref) => {
   const [state, dispatch] = useStateValue();
   //console.log("state in checkout product: ", state);
 
@@ -10,6 +10,7 @@ function CheckoutProduct(props) {
     // dispatch the item into the data layer
     dispatch({
       type: "REMOVE_FROM_BASKET",
+      val: true,
       item: {
         id: props.id,
         title: props.title,
@@ -18,11 +19,11 @@ function CheckoutProduct(props) {
         rating: props.rating,
         totalItems: state.basket.length + 1,
       },
-    });
+    }); 
   };
 
   return (
-    <div className="checkoutProduct">
+    <div className="checkoutProduct" ref={ref}>
       <img className="checkoutProduct__image" src={props.image} alt="" />
 
       <div className="checkoutProduct__info">
@@ -48,6 +49,6 @@ function CheckoutProduct(props) {
       </div>
     </div>
   );
-}
+});
 
 export default CheckoutProduct;

@@ -5,7 +5,24 @@
   background-color: #131921;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 100; 
+}
+
+.header__menuIcon {
+  color: white;
+  display: none;
+}
+
+.header__menuLists {
+  display: flex;
+  flex-direction: column;
+  font-size: 30px;
+  background-color: red;
+}
+
+.header__dropdownItem {
+  color: white;
+  text-decoration: none;
 }
 
 .header__logo {
@@ -70,4 +87,18 @@
 
 .link {
   text-decoration: none;
+}
+
+@media (max-width: 615px) {
+  .header__menuIcon {
+    display: flex;
+  }
+
+  .header__search {
+    display: none;
+  }
+
+  .header__nav {
+    display: none;
+  }
 }

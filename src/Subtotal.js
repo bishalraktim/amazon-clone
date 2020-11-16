@@ -36,4 +36,4 @@ function Subtotal(props) {
   );
 }
 
-export default Subtotal;
+export default Subtotal; 

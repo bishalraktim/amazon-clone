@@ -17,3 +17,23 @@
   text-align: right;
 }
 
+@media (max-width: 615px) {
+  .order {
+    padding: 0;
+  }
+
+  .order__id {
+    display: none;
+  }
+}
+
+@media (max-width: 350px) {
+  .order {
+    background-color: #eaeded;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

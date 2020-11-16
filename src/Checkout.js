@@ -4,11 +4,12 @@ import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 import { getBaskeTotal } from "./reducer";
 import CheckoutProduct from "./ CheckoutProduct";
+import FlipMove from "react-flip-move";
 
 function Checkout() {
-  const [state] = useStateValue();
+  const [state] = useStateValue(); 
 
-  const component = state.basket.map((item, i) => (
+  const component = state.basket.map((item, i) => ( 
     <CheckoutProduct
       id={item.id}
       title={item.title}
@@ -57,7 +58,9 @@ function Checkout() {
         <div>
           <h3>{state.user ? "Hello, " + state.user.email : "Hello Guest"}</h3>
           <h2 className="checkout__title">Your Shopping Basket</h2>
-          {state.search?.length >= 3 ? filteredProducts : component}
+          <FlipMove>
+            {state.search?.length >= 3 ? filteredProducts : component}
+          </FlipMove>
         </div>
       </div>
 
@@ -67,7 +70,7 @@ function Checkout() {
           totalAmount={getBaskeTotal(state.basket)}
         />
       </div>
-    </div>
+    </div> 
   );
 }
 

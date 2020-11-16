@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./Home.css";
 import Product from "./Product";
 import { useStateValue } from "./StateProvider";
+import Sliders from "./Sliders";
+import NavigationIcon from "@material-ui/icons/Navigation";
 
 function Home() {
   const [state] = useStateValue();
-  const homeImage =
-    "https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._CB428684220_.jpg";
+
   const data = [
     {
       id: "012",
@@ -79,10 +80,20 @@ function Home() {
       ));
   }
 
+  const topRef = useRef();
+  const scrollToTop = () => {
+    topRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const topScroll = () => {
+    scrollToTop();
+  };
+
   return (
     <div className="home">
+      <div ref={topRef} />
       <div className="home__container">
-        <img className="home__image" src={homeImage} alt="" />
+        <Sliders />
       </div>
       {state.search?.length >= 3 ? (
         <div className="home__row">{filteredProducts}</div>
@@ -103,7 +114,7 @@ function Home() {
               rating={data[1].rating}
               image={data[1].image}
             />
-          </div>
+          </div> 
 
           <div className="home__row">
             <Product
@@ -137,6 +148,12 @@ function Home() {
               rating={data[5].rating}
               image={data[5].image}
             />
+          </div>
+          <div className="home__footer">
+            <div onClick={topScroll}>
+              <p>BACK TO TOP</p>
+              <NavigationIcon className="home__footer__nav" />
+            </div>
           </div>
         </>
       )}

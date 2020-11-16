@@ -8,7 +8,7 @@ import { getBaskeTotal } from "./reducer";
 import CurrencyFormat from "react-currency-format";
 import Axios from "./axios";
 import { db } from "./firebase";
-import Address from "./Address";
+import Address from "./Address"; 
 
 function Payment() {
   const [state, dispatch] = useStateValue();

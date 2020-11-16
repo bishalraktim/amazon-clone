@@ -7,11 +7,11 @@ function Product(props) {
     .fill()
     .map((_, i) => (
       <p key={i + props.id}>
-        <span role="img" aria-label="star">
+        <span role="img" aria-label="star"> 
           ⭐️
         </span>
       </p>
-    ));
+    ));  
 
   //const [state] = useStateValue();
   const [{ basket }, dispatch] = useStateValue();
@@ -48,4 +48,4 @@ function Product(props) {
   );
 }
 
-export default Product;
+export default Product;  

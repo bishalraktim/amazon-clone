@@ -17,7 +17,7 @@ function Order(props) {
       image={item.image}
       key={item.id + i}
       hideButton={false}
-    />
+    /> 
   ));
 
   let filteredProducts;

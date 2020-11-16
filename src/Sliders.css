@@ -1,0 +1,29 @@
+.home__image {
+  width: 100%;
+  min-height: 165px;
+  z-index: -1;
+  margin-bottom: -150px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+}
+
+.slide__buttons {
+  color: orange;
+  border: none;
+  outline: none;
+  background-color: #eaeded;
+}
+
+.slide__buttons:hover {
+  color: red;
+}
+
+@media (max-width: 615px) {
+  .home__image {
+    mask-image: none;
+  }
+}

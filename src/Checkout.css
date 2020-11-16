@@ -16,3 +16,8 @@
   border-bottom: 1px solid lightgray;
 }
 
+@media (max-width: 660px) {
+  .checkout {
+    flex-flow: wrap;
+  }
+}

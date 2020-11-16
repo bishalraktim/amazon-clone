@@ -39,5 +39,6 @@ li {
 
 li:hover {
   cursor: pointer;
-  background-color: hotpink;
+  background-color: #9c7e31;
+  color: white;
 }

@@ -5,8 +5,11 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
 import { auth } from "./firebase";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Dropdown } from "react-bootstrap";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
-function Header() { 
+function Header() {
   // const [state, dispatch] = useStateValue();
   const [state, dispatch] = useStateValue();
   //console.log("check email of the user", state.user?.email);
@@ -23,9 +26,41 @@ function Header() {
       textValue: e.target.value,
     });
   };
- 
+
   return (
     <div className="header">
+      <div className="header__menuIcon">
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <MenuIcon />
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu className="header__menuLists">
+            <p>Hello Email Address</p>
+            <Dropdown.Item
+              as={Link}
+              to="/login"
+              className="header__dropdownItem"
+            >
+              Sign In
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to="/orders"
+              className="header__dropdownItem"
+            >
+              Returns and Orders
+            </Dropdown.Item>
+            <Dropdown.Item
+              as={Link}
+              to="/checkout"
+              className="header__dropdownItem"
+            >
+              Checkout Basket 0
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <Link to="/">
         <img
           className="header__logo"

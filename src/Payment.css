@@ -53,3 +53,10 @@
 .renderText {
   padding: 10px 0;
 }
+
+@media (max-width: 500px) {
+  .payment__section {
+    display: flex;
+    flex-direction: column;
+  }
+}

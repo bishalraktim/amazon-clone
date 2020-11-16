@@ -9,7 +9,7 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import "./Address.css";
 
 function PlacesAutocomplete() {
-  const [zipcode, setzipCode] = useState(null);
+  const [zipcode, setzipCode] = useState(null); 
 
   const {
     suggestions: { status, data },
