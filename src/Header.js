@@ -36,7 +36,7 @@ function Header() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="header__menuLists">
-            <p>Hello Email Address</p>
+            <p>{state.user ? "Hello " + state.user?.email : "Hello Guest"}</p>
             <Dropdown.Item
               as={Link}
               to="/login"
@@ -56,8 +56,9 @@ function Header() {
               to="/checkout"
               className="header__dropdownItem"
             >
-              Checkout Basket 0
+              Checkout
             </Dropdown.Item>
+            <p>Selected Items: {state.basket?.length}</p>
           </Dropdown.Menu>
         </Dropdown>
       </div>
